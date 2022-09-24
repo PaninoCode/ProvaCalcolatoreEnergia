@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #ece2ce;
+}
+
+.header {
+    padding: 50px 10px 30px 10px;
+    background-color: #f3dfba;
+    text-align: center;
+    border-bottom: solid black 2px;
+}
+
+.section-title {
+    padding: 20px 10px 0px 10px;
+    background-color: #ece2ce;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Source Serif Pro', 'Times New Roman', Times, serif;
+    font-weight: 600;
+}
+
+h2, h3, p, label, span, b, a {
+    font-family: 'Source Serif Pro', 'Times New Roman', Times, serif;
+    font-weight: 400;
+    color: black;
+}
+
+.multiple-columns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0px 10px 15px 10px;
+    border-bottom: solid rgba(0, 0, 0, 0.30) 2px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    padding: 10px;
+}
+
+.input-container-addon {
+    display: flex;
+}
+
+.string-input {
+    padding: 10px;
+    width: 100%;
+    background-color: transparent;
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px 0px 0px 5px;
+    font-family: 'Inconsolata', monospace;
+}
+
+.input-number {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
+.input-text-selection {
+    color: black;
+}
+
+.input-checkbox {
+    accent-color: #000;
+}
+
+.selection-input {
+    padding: 10px;
+    width: 100%;
+    background-color: transparent;
+    border-style: solid;
+    border-color: black;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.button-input {
+    padding: 10px;
+    width: 100%;
+    background-color: black;
+    border-style: solid;
+    border-color: black;
+    color: white;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.input-data-type {
+    display: flex;
+    align-items: center;
+    background-color: black;
+    padding: 10px;
+    color: white;
+    border-radius: 0px 5px 5px 0px;
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.70);
+
+    display: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.display-none {
+    display: none;
+}
+
+.text-danger {
+    font-weight: bold;
+    color: red;
+}
+
+.modal-input-selector {
+    position: absolute;
+    padding: 0px 15px 10px 15px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: black;
+    background-color: #f3dfba;
+}
+
+@media screen and (max-width: 600px) {
+    .modal-input-selector {
+        border-style: solid none none none;
+        border-radius: 0px;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+    }     
+}
+
+@media screen and (min-width: 601px) {
+    .modal-input-selector {
+        width: 400px;
+        top: 20%;
+        left: 50%;
+        margin-left: -200px; /* Negative half of width. */
+    }     
+}
+
+.entry-selection-icon {
+    padding: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.text-link {
+    cursor: pointer;
+    text-decoration: underline rgba(0, 0, 0, 0.30);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

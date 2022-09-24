@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calcolatrice online di utilizzo energia elettrica</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <div class="modal-backdrop" id="add_system_modal">
+        <div class="modal-input-selector">
+            <h2 class="text-center">Nuovo confronto</h2>
+            <p>Scegli un Elemento per aggiungerlo al confronto.</p>
+            <div id="caldaia_condensazione_system_selection" class="entry-selection-icon text-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+                </svg>
+                <b>&nbsp;Caldaia a condensazione</b>
+            </div>
+            <div id="caldaia_tradizionale_system_selection" class="entry-selection-icon text-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+                </svg>
+                <b>&nbsp;Caldaia tradizionale</b>
+            </div>
+            <div id="pompa_buona_system_selection" class="entry-selection-icon text-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+                </svg>
+                <b>&nbsp;Pompa di calore (di buon livello)</b>
+            </div>
+            <div id="pompa_economica_system_selection" class="entry-selection-icon text-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+                </svg>
+                <b>&nbsp;Pompa di calore (economica)</b>
+            </div>
+            <div id="stufa_elettrica_system_selection" class="entry-selection-icon text-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+                </svg>
+                <b>&nbsp;Stufa elettrica</b>
+            </div>
+            <div id="custom_system_selection" class="entry-selection-icon text-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
+                </svg>
+                <b>&nbsp;Elemento personalizzato</b>
+            </div><br>
+            <p class="text-link" id="add_system_modal_close">Annulla selezione.</p>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="remove_system_modal">
+        <div class="modal-input-selector">
+            <h2 class="text-center">Elimina elemento</h2>
+            <p>Scegli uno o pi&ugrave; Elementi da rimuovere.</p>
+
+            <input class="input-checkbox" type="checkbox" id="all_elements">
+            <label for="all_elements"> Elimina tutto</label><br>
+            <br>
+            <div id="element_remove_checks">
+
+            </div>
+
+            <p class="text-link text-danger" id="remove_system_modal_confirm">Elimina selezionati.</p>
+            <p class="text-link" id="remove_system_modal_close">Annulla selezione.</p>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="custom_system_modal">
+        <div class="modal-input-selector">
+            <h2 class="text-center">Aggiungi personalizzato</h2>
+            <label for="nome_elemento">Nome elemento:</label><br>
+            <div class="input-container-addon">
+                <input type="text" class="string-input input-number" id="custom_system_name"><br><br><span
+                    class="input-data-type"></span>
+            </div>
+            <label for="rendimento_elemento">Rendimento:</label><br>
+            <div class="input-container-addon">
+                <input type="number" min="0" class="string-input input-number"
+                    id="custom_system_rendimento"><br><br><span class="input-data-type"></span>
+            </div><br>
+            <label for="rendimento_elemento">Costo:</label><br>
+            <div class="input-container-addon">
+                <input type="number" min="0" class="string-input input-number"
+                    id="custom_system_costo"><br><br><span class="input-data-type"></span>
+            </div><br>
+            <input class="input-checkbox" type="checkbox" id="custom_system_gas">
+            <label for="custom_system_gas"> Sistema a gas</label><br>
+            <input class="input-checkbox" type="checkbox" id="custom_system_elettrico">
+            <label for="custom_system_elettrico"> Sistema elettrico</label><br><br>
+            <div class="input-container-addon cursor-pointer" id="add_custom_system_confirm">
+                <span class="button-input">Conferma</span>
+                <span class="input-data-type">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                        class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </svg>
+                </span>
+            </div>
+            <p class="text-link" id="custom_system_modal_close">Annulla inserimento.</p>
+        </div>
+    </div>
+    <div class="modal-backdrop" id="error_modal">
+        <div class="modal-input-selector">
+            <h2 class="text-center" id="error_modal_title"></h2>
+            <p id="error_modal_text"></p>
+            <p class="text-link" id="error_modal_close">Chiudi finestra.</p>
+        </div>
+    </div>
+    <div class="modal-backdrop" id="credits_modal">
+        <div class="modal-input-selector">
+            <h2 class="text-center">Informazioni</h2>
+            <p>Software realizzato da Alex Niccol&ograve; Ferrari, come prova durante l'anno scolastico 2022/23.</p>
+            <ul>
+                <li>
+                    <p>Realizzato in JavaScript, HTML, CSS.</p>
+                </li>
+                <li>
+                    <p><a target="_blank" href="https://github.com/alex65ferrari/ProvaCalcolatoreEnergia">Repository
+                            Codice</a></p>
+                </li>
+                <li>
+                    <p><a href="https://github.com/alex65ferrari/ProvaCalcolatoreEnergia/blob/main/LICENSE">Licenza:
+                            GPL-3.0</a></p>
+                </li>
+            </ul>
+            <p class="text-link" id="credits_modal_close">Chiudi finestra.</p>
+        </div>
+    </div>
+    <div class="header">
+        <h1>Calcolatore di utilizzo energia</h1>
+        <p id="credits_modal_open">Calcolatore di Utilizzo Energia, realizzato come prova per l'Anno scolastico 2022/23
+            da <a onclick="return false;" href="https://github.com/alex65ferrari">Alex Niccol&ograve; Ferrari.</a></p>
+    </div>
+    <!-- Consumi e Costi -->
+    <div class="section-title">
+        <h2>Consumi e costi energia</h2>
+    </div>
+    <div class="multiple-columns">
+        <div class="column">
+            <div class="row">
+                <label for="consumo_ee">Consumo Energia Elettrica:</label><br>
+                <div class="input-container-addon">
+                    <input type="number" min="0" class="string-input input-number" id="consumo_ee"><br><br><span
+                        class="input-data-type">kWh/anno</span>
+                </div>
+
+                <label for="consumo_gas">Consumo Gas:</label><br>
+                <div class="input-container-addon">
+                    <input type="number" min="0" class="string-input input-number" id="consumo_gas"><br><br><span
+                        class="input-data-type">SMC/anno</span>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="row">
+                <label for="costo_ee">Costo Energia Elettrica:</label><br>
+                <div class="input-container-addon">
+                    <input type="number" min="0" class="string-input input-number" id="costo_ee"><br><br>
+                    <span class="input-data-type">&euro;/kWh</span>
+                </div>
+
+                <label for="costo_gas">Costo Gas:</label><br>
+                <div class="input-container-addon">
+                    <input type="number" min="0" class="string-input input-number" id="costo_gas"><br><br>
+                    <span class="input-data-type">&euro;/SMC</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <div class="section-title">
+        <h2>Confronta sistemi di riscaldamento</h2>
+    </div>
+    <div class="multiple-columns">
+        <div class="column">
+            <div class="row input-container-addon">
+                <div class="input-container-addon cursor-pointer" id="add_system_modal_open">
+                    <span class="button-input">Aggiungi un sistema</span>
+                    <span class="input-data-type">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                            class="bi bi-caret-down-square-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4 4a.5.5 0 0 0-.374.832l4 4.5a.5.5 0 0 0 .748 0l4-4.5A.5.5 0 0 0 12 6H4z" />
+                        </svg>
+                    </span>
+                </div>
+                <span style="width: 10px;"></span>
+                <div class="input-container-addon cursor-pointer" id="remove_system_modal_open">
+                    <span class="button-input">Rimuovi un sistema</span>
+                    <span class="input-data-type">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                            class="bi bi-caret-down-square-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4 4a.5.5 0 0 0-.374.832l4 4.5a.5.5 0 0 0 .748 0l4-4.5A.5.5 0 0 0 12 6H4z" />
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="display-none" id="sc_template">
+        <div class="multiple-columns">
+            <div class="column">
+                <div class="row">
+                    <b><h3 class="text-center"><!-- element 1 --></h3></b>
+                    <p class="text-center">Rendimento: <!-- element 1R --></p>
+                    <p class="text-center">Costo: <!-- element 1C -->&euro;</p>
+                    <p class="text-center">Tipo: <!-- element 1T --></p>
+                </div>
+            </div>
+            <div class="column">
+                <div class="row">
+                    <b><h3 class="text-center"><!-- element 2 --></h3></b>
+                    <p class="text-center">Rendimento: <!-- element 2R --></p>
+                    <p class="text-center">Costo: <!-- element 2C -->&euro;</p>
+                    <p class="text-center">Tipo: <!-- element 2T --></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="display-none" id="sce_template">
+        <div class="multiple-columns">
+            <div class="column">
+                <div class="row">
+                    <b><h3 class="text-center"><!-- element 3 --></h3></b>
+                    <p class="text-center">Rendimento: <!-- element 3R --></p>
+                    <p class="text-center">Costo: <!-- element 3C -->&euro;</p>
+                    <p class="text-center">Tipo: <!-- element 3T --></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sistemi_confrontati">
+    </div>
+    <div id="sistemi_confrontati_extra">
+    </div>
+
+    <div class="multiple-columns">
+        <div class="column">
+            <div class="row input-container-addon">
+                <div class="input-container-addon cursor-pointer" id="compare_start">
+                    <span class="button-input">Confronta i sistemi</span>
+                    <span class="input-data-type">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                            class="bi bi-caret-down-square-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4 4a.5.5 0 0 0-.374.832l4 4.5a.5.5 0 0 0 .748 0l4-4.5A.5.5 0 0 0 12 6H4z" />
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-title">
+        <h2>Risultato:</h2>
+    </div>
+    <div class="multiple-columns">
+        <div class="column">
+            <p id="risultato_confronto"></p>
+        </div>
+    </div>
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="compare.js"></script>
+</body>
+
+</html>
